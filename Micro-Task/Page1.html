@@ -8,10 +8,13 @@
         <h1>Welcome to the Video Container Page</h1>
         <div class="container">
             <div class="main">
-                <div class="video-container">Video Feed</div>
+                <video id="videoFeed" class="video-container" autoplay></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <img id="snapshot"/>
                 <button id="startBtn">Start</button>
                 <button id="stopBtn">Stop</button>
                 <button id="captureBtn">Capture</button>
+                
             </div>
             <div class="sidebar">
                 <h3>Event Logger</h3>
