@@ -34,3 +34,9 @@ h3 {
 *{
     box-sizing: border-box;
 }
+#snapshot {
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid gray;
+    display: none;
+}
