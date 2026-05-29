@@ -1,36 +1,25 @@
-let buttons = document.querySelectorAll("button");
-let logList = document.querySelector("#log");
-let videoFeed = document.querySelector("#videoFeed");
-let canvas = document.querySelector("#canvas");
-let snapshot = document.querySelector("#snapshot");
-let stream = null;
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        let newItem = document.createElement("li");
-        newItem.textContent = "Button " + button.textContent + " Clicked";
-        logList.appendChild(newItem);
-
-        if (button.id === "startBtn") {
-            navigator.mediaDevices.getUserMedia({ video: true })
-            .then((s) => {
-                stream = s;
-                videoFeed.srcObject = stream;
-            });
-        }
-
-        if (button.id === "stopBtn" && stream) {
-            stream.getTracks().forEach(track => track.stop());
-            videoFeed.srcObject = null;
-            stream = null;
-        }
-
-        if (button.id === "captureBtn") {
-            canvas.width = videoFeed.videoWidth;
-            canvas.height = videoFeed.videoHeight;
-            canvas.getContext("2d").drawImage(videoFeed, 0, 0);
-            snapshot.src = canvas.toDataURL("image/png");
-            snapshot.style.display = "block";
-        }
-    });
-});
+<html>
+    <head>
+        <title>Video Container Page</title>
+        <link href="Styles/styles.css" rel="stylesheet" />
+        <script defer src="Scripts/main.js"></script>
+    </head>
+    <body>
+        <h1>Welcome to the Video Container Page</h1>
+        <div class="container">
+            <div class="main">
+                <video id="videoFeed" class="video-container" autoplay></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <img id="snapshot"/>
+                <button id="startBtn">Start</button>
+                <button id="stopBtn">Stop</button>
+                <button id="captureBtn">Capture</button>
+                
+            </div>
+            <div class="sidebar">
+                <h3>Event Logger</h3>
+                <ul id="log"></ul>
+            </div>
+        </div>
+    </body>
+</html>
